@@ -10,15 +10,16 @@ using System.Windows.Forms;
 
 namespace joshuaAnimation
 {
+    //change the ints for "Circle circle" so that it can be used as the ball in pong
+    //then create the square paddle and write the ints
     public partial class Form1 : Form
     {
         Graphics gfx;
 
         //green circle 
-        Circle circle = new Circle(50, 100, 50, 50, 90, 90, Color.Gold);
-        Circle other = new Circle(200, 500, 400, 40, 20, 10, Color.DarkRed);
-        Circle another = new Circle(50, 40, 450, 100, 90, 20, Color.DarkBlue);
-        Circle more = new Circle(50, 5000, 440, 20, 150, 190, Color.Green);
+        Circle circle = new Circle(50, 100, 50, 50, 10, 10, Color.Gold);
+        Square square = new Square(10, 50, 50, 180, 10, Color.CadetBlue);
+        Square square2 = new Square(600, 50, 50, 180, 0, Color.CadetBlue);
 
         public Form1()
         {
@@ -34,13 +35,10 @@ namespace joshuaAnimation
         int ySpeed = 6;
         int xSpeed = 6;
 
-        int x2 = 100;
-        int y2 = 100;
-        int ySpeed2 = 8;
-        int xSpeed2 = 9;
-
-        
-
+//        int x2 = 100;
+//        int y2 = 100;
+//        int ySpeed2 = 8;
+//        int xSpeed2 = 9;
 
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -50,17 +48,29 @@ namespace joshuaAnimation
             gfx.Clear(BackColor);
 
             circle.move(ClientSize);
-            other.move(ClientSize);
-            another.move(ClientSize);
+            square.move(ClientSize);
+            square2.move(ClientSize);
 
-            other.Draw(gfx);
             circle.Draw(gfx);
-            another.Draw(gfx);
+            square.Draw(gfx);
+            square2.Draw(gfx);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.W)
+            {
+                square2.MoveUp();
+            }
+            if (e.KeyCode == Keys.S)
+            {
+                square2.MoveDown();
+            }
         }
     }
 }

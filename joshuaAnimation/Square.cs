@@ -7,42 +7,27 @@ using System.Threading.Tasks;
 
 namespace joshuaAnimation
 {
-    class Circle
+    class Square
     {
-        int x;// = 0
-        int y; // = 0
+        int x;
+        int y; 
         int width;
         int height;
-        int xSpeed;
         int ySpeed;
         Color color;
-        //width, height, xSpeed, ySpeed
-        public Circle(int x, int y, int width, int height, int xSpeed, int ySpeed, Color color)//<- constructor
+
+        public Square(int x, int y, int width, int height, int ySpeed, Color color)
         {
             this.x = x;
             this.y = y;
             this.width = width;
             this.height = height;
-            this.xSpeed = xSpeed;
             this.ySpeed = ySpeed;
             this.color = color;
         }
-
-         public void move(Size ClientSize)
+        public void move(Size ClientSize)
         {
-            x += xSpeed;
             y += ySpeed;
-
-            if (x + width > ClientSize.Width)
-            {
-                xSpeed *= -1;
-            }
-
-            if (x < 0)
-            {
-                xSpeed *= -1;
-            }
-
             if (y + height > ClientSize.Height)
             {
                 ySpeed *= -1;
@@ -53,11 +38,18 @@ namespace joshuaAnimation
                 ySpeed *= -1;
             }
         }
-
-
         public void Draw(Graphics gfx)
         {
-            gfx.FillEllipse(new SolidBrush(color), x, y, width, height);
+            gfx.FillRectangle(new SolidBrush(color), x, y, width, height);
+        }
+
+        public void MoveUp()
+        {
+            y -= 10;
+        }
+        public void MoveDown()
+        {
+            y += 10;
         }
     }
 }
